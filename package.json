@@ -1,0 +1,42 @@
+{
+  "name": "alt-logger",
+  "version": "1.0.3",
+  "description": "Logger for alt",
+  "main": "lib",
+  "jsnext:main": "src",
+  "scripts": {
+    "build": "npm run clean && npm run transpile",
+    "clean": "rimraf lib",
+    "transpile": "babel src --out-dir lib",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rhymen/alt-logger.git"
+  },
+  "keywords": [
+    "alt",
+    "alt-logger",
+    "logger",
+    "middleware",
+    "flux"
+  ],
+  "authors": [
+    "Lucas Engelke  (https://github.com/rhymen)",
+    "Rico Herwig  (https://github.com/rherwig)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rhymen/alt-logger/issues"
+  },
+  "homepage": "https://github.com/Rhymen/alt-logger#readme",
+  "dependencies": {
+    "flux": "^2.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "rimraf": "^2.5.4"
+  }
+}
