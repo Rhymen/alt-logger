@@ -11,14 +11,17 @@ export default class DebugDispatcher extends Dispatcher {
 	}
 
 	dispatch(payload) {
+		const start = new Date();
 		const prevState = utils.getState(this.alt);
 		super.dispatch(payload);
 		const nextState = utils.getState(this.alt);
+		const stop = new Date();
 
 		log({
 			prevState,
 			payload,
-			nextState
+			nextState,
+            durationTime: stop - start
 		});
 	}
 

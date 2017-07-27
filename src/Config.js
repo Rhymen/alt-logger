@@ -2,10 +2,13 @@ let config = {
 	collapsed: true,
 	colors: {
 		title: '#2ecc71',
+		timestamp: '#9ec171',
+		duration: '#3498db',
 		prevState: '#3498db',
 		action: '#2ecc71',
 		nextState: '#3498db'
 	},
+	duration: true,
 	timestamp: true,
 	transformState: state => state,
 	transformAction: action => ({

@@ -2,24 +2,26 @@ import Config from './Config';
 import * as utils from './utils';
 
 export default function log(logData) {
-	const {colors, collapsed, timestamp, transformState, transformAction, predicate} = Config.get();
-	const {prevState, payload, nextState} = logData;
+	const {colors, collapsed, timestamp, duration, transformState, transformAction, predicate} = Config.get();
+	const {prevState, payload, nextState, durationTime} = logData;
 
 	if (typeof predicate === 'function' && !predicate(payload, prevState, nextState)) {
 		return;
 	}
 
-	const title = (`%c ${payload.action}` + (timestamp ? ` @ ${utils.getTime()}` : '')),
-		titleCss = `color: ${colors.title}`;
+	const title = ((timestamp ? `%c ${utils.getTime()}:` : '%c') + `%c ${payload.action}`) + (duration ? `%c (${durationTime} ms)` : '%c'),
+		titleCss = `color: ${colors.title}`,
+		timestampCss = `color: ${colors.timestamp}`,
+		durationCss = `color: ${colors.duration}`;
 
 	try {
 		if (typeof collapsed === 'function' ? collapsed(payload, prevState, nextState) : collapsed) {
-			console.groupCollapsed(title, titleCss);
+			console.groupCollapsed(title, timestampCss, titleCss, durationCss);
 		} else {
-			console.group(title, titleCss);
+			console.group(title, timestampCss, titleCss, durationCss);
 		}
 	} catch (e) {
-		console.log(title, titleCss);
+		console.log(title, timestampCss, titleCss, durationCss);
 	}
 
 	console.info('%c prevState', `color: ${colors.prevState}`, transformState(prevState));
