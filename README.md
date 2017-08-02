@@ -35,6 +35,7 @@ At the moment it's not possibly to add a custom dispatcher to alt, because it wo
     nextState: '#3498db'
   }, // Object with the log colors.
   timestamp: true, // Print the timestamp with the action name
+  duration: true, // Print the duration
   transformState: state => state, // Transform state before print.
   transformAction action => ({
     'payload': action.payload,
